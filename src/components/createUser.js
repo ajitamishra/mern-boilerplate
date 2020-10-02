@@ -37,7 +37,7 @@ export class createUser extends Component {
   render() {
     return (
       <div>
-        <h3>Create New Exercise</h3>
+        <h3 className="">Create New Exercise</h3>
         <form onSubmit={this.onSubmit}>
           <div>
             <label>Username:</label>
