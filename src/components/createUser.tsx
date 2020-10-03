@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import api from "../services/api";
 
 export class createUser extends React.Component<{}, { username: string }> {

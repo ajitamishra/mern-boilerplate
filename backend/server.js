@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const exerciseRouter = require("./routes/exercises");
 const userRouter = require("./routes/users");
 
-require("dotenv").config();
+require("dotenv").config({ path: "../.env" });
 
 const app = express();
 const port = process.env.PORT || 5000;
