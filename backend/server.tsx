@@ -1,8 +1,8 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const exerciseRouter = require("./routes/exercises");
-const userRouter = require("./routes/users");
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import exerciseRouter from "./routes/exercises";
+import userRouter from "./routes/users";
 
 require("dotenv").config();
 
@@ -14,10 +14,11 @@ app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
 
-mongoose.connect(
-  "mongodb+srv://hcare:hcare123@cluster0.6lctl.mongodb.net/test?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
-);
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});
 
 const connection = mongoose.connection;
 connection.once("open", () => {

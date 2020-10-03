@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-export class createUser extends Component {
-  constructor(props) {
+import api from "../services/api";
+
+export class createUser extends React.Component<{}, { username: string }> {
+  constructor(props = {} as Object) {
     super(props);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -12,23 +12,23 @@ export class createUser extends Component {
     };
   }
 
-  onChangeUsername(e) {
+  onChangeUsername(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ username: e.target.value });
   }
 
-  onSubmit(e) {
+  async onSubmit(e: React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const user = {
       username: this.state.username,
     };
     console.log(user);
-    axios
+    await api
       .post("/users/add", user)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
-    axios
-      .get("/users/", user)
+    await api
+      .get("/users/")
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     this.setState({ username: "" });

@@ -1,13 +1,20 @@
-import React, { Component } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-export class createExercise extends Component {
-  constructor(props) {
+import React from "react";
+
+export class createExercise extends React.Component<
+  {},
+  {
+    username: string;
+    description: string;
+    duration: number;
+    date: Date;
+    users: string[];
+  }
+> {
+  constructor(props: object) {
     super(props);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDuration = this.onChangeDuration.bind(this);
-    this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       username: "",
@@ -20,20 +27,17 @@ export class createExercise extends Component {
   componentDidMount() {
     this.setState({ users: ["test user"], username: "test user" });
   }
-  onChangeUsername(e) {
+  onChangeUsername(e: React.ChangeEvent<HTMLSelectElement>) {
     this.setState({ username: e.target.value });
   }
-  onChangeDescription(e) {
+  onChangeDescription(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ description: e.target.value });
   }
-  onChangeDuration(e) {
-    this.setState({ duration: e.target.value });
-  }
-  onChangeDate(e) {
-    this.setState({ date: e.target.value });
+  onChangeDuration(e: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({ duration: +e.target.value });
   }
 
-  onSubmit(e) {
+  onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const exercise = {
@@ -82,13 +86,6 @@ export class createExercise extends Component {
               value={this.state.duration}
               onChange={this.onChangeDuration}
             ></input>
-          </div>
-          <div>
-            <label>Date:</label>
-            <DatePicker
-              selected={this.state.date}
-              onChange={this.onChangeDate}
-            />
           </div>
           <div>
             <input type="submit" value="create log"></input>
