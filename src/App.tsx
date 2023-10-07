@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles.css";
 import Navbar from "./components/navbar";
 import ExerciseList from "./components/exerciseList";
@@ -12,10 +12,12 @@ function App() {
     <Router>
       <Navbar />
       <br />
+        <Routes>
       <Route path="/" exact component={ExerciseList} />
       <Route path="/edit/:id" component={EditExercise} />
       <Route path="/create" component={CreateExercise} />
       <Route path="/user" component={CreateUser} />
+        </Routes>
     </Router>
   );
 }
